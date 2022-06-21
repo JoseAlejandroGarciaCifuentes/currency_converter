@@ -1,0 +1,25 @@
+PODS:
+  - RxSwift (6.5.0)
+  - Swinject (2.7.1)
+  - SwinjectStoryboard (2.2.2):
+    - Swinject (~> 2.7.1)
+
+DEPENDENCIES:
+  - RxSwift (= 6.5.0)
+  - Swinject
+  - SwinjectStoryboard
+
+SPEC REPOS:
+  trunk:
+    - RxSwift
+    - Swinject
+    - SwinjectStoryboard
+
+SPEC CHECKSUMS:
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
+  SwinjectStoryboard: 240ce371396da09a4c43c72ee5c148108500e184
+
+PODFILE CHECKSUM: f9fe0237e190f6953f1f3cf8e132c76f8b8bcc7f
+
+COCOAPODS: 1.11.3
