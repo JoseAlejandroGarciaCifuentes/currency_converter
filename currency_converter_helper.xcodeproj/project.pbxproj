@@ -26,6 +26,7 @@
 		531E121C28622E5D00A55B9F /* RequestTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531E121B28622E5D00A55B9F /* RequestTool.swift */; };
 		531E121E28622E6E00A55B9F /* RequestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531E121D28622E6E00A55B9F /* RequestModels.swift */; };
 		531E122028622E8200A55B9F /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531E121F28622E8200A55B9F /* NetworkingError.swift */; };
+		531E12222862316400A55B9F /* BeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531E12212862316400A55B9F /* BeamModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		531E121B28622E5D00A55B9F /* RequestTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTool.swift; sourceTree = "<group>"; };
 		531E121D28622E6E00A55B9F /* RequestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestModels.swift; sourceTree = "<group>"; };
 		531E121F28622E8200A55B9F /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
+		531E12212862316400A55B9F /* BeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 		531E121728622C2A00A55B9F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				531E12212862316400A55B9F /* BeamModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				531E1207286220E300A55B9F /* Constants.swift in Sources */,
 				531E121C28622E5D00A55B9F /* RequestTool.swift in Sources */,
 				531E121428622B8C00A55B9F /* Application.swift in Sources */,
+				531E12222862316400A55B9F /* BeamModel.swift in Sources */,
 				531E11CF28620F9700A55B9F /* ViewController.swift in Sources */,
 				531E121E28622E6E00A55B9F /* RequestModels.swift in Sources */,
 				531E1212286223CB00A55B9F /* StringExtension.swift in Sources */,
@@ -582,7 +586,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MP8R359Z9X;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = currency_converter_helper/Info.plist;
+				INFOPLIST_FILE = currency_converter_helper/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -611,7 +615,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MP8R359Z9X;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = currency_converter_helper/Info.plist;
+				INFOPLIST_FILE = currency_converter_helper/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
