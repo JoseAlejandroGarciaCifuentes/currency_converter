@@ -9,4 +9,5 @@ import Foundation
 
 internal enum Constants {
     static let apiBaseUrl = "http://quiet-stone-2094.herokuapp.com/"
+    static let urlExtension = ".json"
 }

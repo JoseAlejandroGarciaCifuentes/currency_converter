@@ -8,15 +8,13 @@
 import Foundation
 import Combine
 
-@available(iOS 13.0, *)
 protocol RequestManagerProtocol: AnyObject {
-    func requestGeneric<R: Request, T: Decodable>(request: R, entity: T.Type) -> AnyPublisher<T, NetworkingError>
+    func requestGeneric<R: Request, T: Decodable>(request: R, entity: T.Type) -> AnyPublisher<[T], NetworkingError>
 }
 
-@available(iOS 13.0, *)
 class RequestManager : RequestManagerProtocol {
     
-    internal func requestGeneric<R: Request, T: Decodable>(request: R, entity: T.Type) -> AnyPublisher<T, NetworkingError> {
+    internal func requestGeneric<R: Request, T: Decodable>(request: R, entity: T.Type) -> AnyPublisher<[T], NetworkingError> {
     
         let data = try? JSONSerialization.data(withJSONObject: request.params, options: .prettyPrinted)
         let defaultSessionConfiguration = URLSessionConfiguration.default
@@ -32,7 +30,7 @@ class RequestManager : RequestManagerProtocol {
             .mapError { error -> NetworkingError in
                 NetworkingError(error: error)
             }
-            .flatMap { data, response -> AnyPublisher<T, NetworkingError> in
+            .flatMap { data, response -> AnyPublisher<[T], NetworkingError> in
                 guard let httpResponse = response as? HTTPURLResponse else {
                     return Fail(error: NetworkingError(status: .badRequest)).eraseToAnyPublisher()
                 }
@@ -44,7 +42,7 @@ class RequestManager : RequestManagerProtocol {
                 
                 if (200...299).contains(httpResponse.statusCode) {
                     return Just(data)
-                        .decode(type: T.self, decoder: JSONDecoder())
+                        .decode(type: [T].self, decoder: JSONDecoder())
                         .mapError { error in
                             NetworkingError(status: .unableToParseRequest)
                         }

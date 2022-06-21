@@ -13,8 +13,7 @@ enum HTTMethods: String {
 }
 
 protocol Request {
- 
-    associatedtype Model
+    
     typealias HTTPHeaders = [String : String]
     
     var baseURL: String { get }
@@ -22,15 +21,15 @@ protocol Request {
     var httpHeaders: HTTPHeaders { get }
     var params: [String: Any] { get }
     var httpMethod: HTTMethods { get }
-    init(model: Model?)
     
 }
 
 extension Request {
     
     var baseURL: String { Constants.apiBaseUrl }
-    var httpMethod: HTTMethods { .post }
-    var httpHeaders: HTTPHeaders { return ["Content-Type": "application/json", "Accept" : "application/json"]
-    }
+    var urlExtension: String { Constants.urlExtension }
+    var httpMethod: HTTMethods { .get }
+    var params: [String: Any] { [:] }
+    var httpHeaders: HTTPHeaders { return ["Content-Type": "application/json", "Accept" : "application/json"] }
     
 }
