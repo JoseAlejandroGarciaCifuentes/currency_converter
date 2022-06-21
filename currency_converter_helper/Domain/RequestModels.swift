@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct RatesRequest: Request {
+    var endpoint: String { baseURL + "rates" + urlExtension }
+    var httpHeaders: HTTPHeaders { ["Content-Type": "application/json", "Accept" : "application/json"] }
+}
+
+struct TransactionsRequest: Request {
+    var endpoint: String { baseURL + "transactions" + urlExtension }
+    var httpHeaders: HTTPHeaders { ["Content-Type": "application/json", "Accept" : "application/json"] }
+}
