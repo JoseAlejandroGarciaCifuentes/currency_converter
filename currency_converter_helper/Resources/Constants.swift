@@ -7,7 +7,21 @@
 
 import Foundation
 
-internal enum Constants {
-    static let apiBaseUrl = "http://quiet-stone-2094.herokuapp.com/"
-    static let urlExtension = ".json"
+struct Constants {
+    struct Domain {
+        static let apiBaseUrl = "http://quiet-stone-2094.herokuapp.com/"
+        static let urlExtension = ".json"
+    }
+    
+    struct DI {
+        static let MainNavController = "MainNavController"
+    }
+    
+    struct Storyboard {
+        static let main = "Main"
+    }
+    
+    struct ViewController {
+        static let mainVC = "MainVC"
+    }
 }

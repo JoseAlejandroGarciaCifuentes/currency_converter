@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TransactionServerModel: Codable {
+struct TransactionServerModel: Codable, Equatable {
     
     var sku: String
     var amount: String
