@@ -26,8 +26,8 @@ protocol Request {
 
 extension Request {
     
-    var baseURL: String { Constants.apiBaseUrl }
-    var urlExtension: String { Constants.urlExtension }
+    var baseURL: String { Constants.Domain.apiBaseUrl }
+    var urlExtension: String { Constants.Domain.urlExtension }
     var httpMethod: HTTMethods { .get }
     var params: [String: Any] { [:] }
     var httpHeaders: HTTPHeaders { return ["Content-Type": "application/json", "Accept" : "application/json"] }

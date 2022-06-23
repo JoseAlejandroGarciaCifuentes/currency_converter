@@ -7,8 +7,8 @@ target 'currency_converter_helper' do
 
   # Pods for currency_converter_helper
 
-pod 'Swinject'
-pod 'SwinjectStoryboard'
+pod 'Swinject', '2.7.1'
+pod 'SwinjectStoryboard', :git => 'https://github.com/anuragajwani/SwinjectStoryboard'
 pod 'RxSwift', '= 6.5.0'
 
   target 'currency_converter_helperTests' do
