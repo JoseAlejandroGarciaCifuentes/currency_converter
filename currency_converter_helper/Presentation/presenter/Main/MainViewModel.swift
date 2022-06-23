@@ -24,20 +24,36 @@ class MainViewModel: BaseVM {
     }
     
     /// The current ViewState of the UIViewController attached - MapVC
-    private(set) var currentViewState: MainViewState
+    private(set) var currentViewState: MainViewState = .loading
+    
+    /// Array containing the table content
+    private var transactions: [Transaction] = []
     
     init(provider: Provider) {
         self.provider = provider
-        currentViewState = .loading
-        mainViewState.onNext(currentViewState)
     }
     
     func viewIsReady() {
         getTransactions()
     }
     
+    /**
+     Configure notication cells for MainViewController
+     */
+    func configure(cell: TransactionCell, forRowAt row: Int) {
+        let transaction = transactions[row]
+        cell.display(transaction: transaction)
+    }
+    
+    func moveToDetails(with transaction: Transaction) {
+        currentViewState = .openDetails
+        mainViewState.onNext(currentViewState)
+    }
+    
     internal func getTransactions() {
-
+        currentViewState = .loading
+        mainViewState.onNext(currentViewState)
+        
         self.provider.requestTransactions()
             .sink { [weak self] completion in
                 guard self != nil else { return }
@@ -48,7 +64,11 @@ class MainViewModel: BaseVM {
                 }
             } receiveValue: { [weak self] response in
                 guard self != nil else { return }
-                self?.currentViewState = MainViewState.displayTransactions(transactions: response)
+                response.forEach { transaction in
+                    self?.transactions.append(Transaction(transaction))
+                }
+                
+                self?.currentViewState = MainViewState.displayTransactions(transactions: self?.transactions ?? [])
                 self?.mainViewState.onNext(self?.currentViewState ?? .loading)
             }
             .store(in: &cancellable)

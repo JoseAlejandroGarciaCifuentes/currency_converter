@@ -101,48 +101,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "22B3A09A-6532-4E61-A646-22B86ECBE996"
+            uuid = "418F1372-689C-49AE-8848-A9C32EB3054F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "currency_converter_helper/Application/AppDelegate.swift"
+            filePath = "currency_converter_helper/Presentation/ui/Main/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "setupViewStateObserver()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F6E63EF6-0D24-4DF6-9E84-E5036CA9E27B"
+            uuid = "793D1F4E-F203-4D4D-8479-3191AED28E52"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "currency_converter_helper/DI/Application.swift"
+            filePath = "currency_converter_helper/Presentation/ui/Main/TransactionCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
             endingLineNumber = "27"
-            landmarkName = "startApp(mainWindow:)"
+            landmarkName = "display(transaction:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B37ABB73-C90C-4D06-98B3-B1AA1371782B"
+            uuid = "D906129C-B4E6-41C9-BE05-FA3A5A099889"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "currency_converter_helper/Presentation/ui/RootViewController.swift"
+            filePath = "currency_converter_helper/Presentation/ui/Main/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EF642F32-64BC-48BB-B71E-40A55D976A93"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "currency_converter_helper/Presentation/ui/Main/MainViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "setupViewStateObserver()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

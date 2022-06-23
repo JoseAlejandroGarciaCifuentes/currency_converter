@@ -24,4 +24,8 @@ struct Constants {
     struct ViewController {
         static let mainVC = "MainVC"
     }
+    
+    struct cellIds {
+        static let transactionCell = "transactionCell"
+    }
 }

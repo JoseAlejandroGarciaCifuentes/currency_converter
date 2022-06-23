@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 
 class BaseVM: NSObject {
+    var activityIndicator = UIActivityIndicatorView()
     
     /// RxSwift
     private(set) var compositeDisposable = CompositeDisposable()

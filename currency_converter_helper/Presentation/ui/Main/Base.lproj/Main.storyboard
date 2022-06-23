@@ -25,21 +25,78 @@
             </objects>
             <point key="canvasLocation" x="-1368" y="85"/>
         </scene>
-        <!--Main View Controller-->
+        <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="MainVC" id="BYZ-38-t0r" customClass="MainViewController" customModule="currency_converter_helper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="F7t-ut-9Kd">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="transactionCell" rowHeight="67" id="Wdk-fl-VDL" customClass="TransactionCell" customModule="currency_converter_helper" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="67"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wdk-fl-VDL" id="jcL-YG-UKZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="67"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIJ-ze-hNA">
+                                                    <rect key="frame" x="186" y="23" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="uIJ-ze-hNA" firstAttribute="centerY" secondItem="jcL-YG-UKZ" secondAttribute="centerY" id="SUB-PU-PL8"/>
+                                                <constraint firstItem="uIJ-ze-hNA" firstAttribute="centerX" secondItem="jcL-YG-UKZ" secondAttribute="centerX" id="nbc-56-5Lt"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="title" destination="uIJ-ze-hNA" id="g02-ve-9pu"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="F7t-ut-9Kd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="FWK-pU-qqQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="F7t-ut-9Kd" secondAttribute="trailing" id="ax3-o3-sHe"/>
+                            <constraint firstItem="F7t-ut-9Kd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tGE-7r-Bz5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="F7t-ut-9Kd" secondAttribute="bottom" id="tVD-bV-JIT"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="bzo-xK-iK2"/>
+                    <navigationItem key="navigationItem" title="Home" id="bzo-xK-iK2"/>
+                    <connections>
+                        <outlet property="tableVIew" destination="F7t-ut-9Kd" id="bpv-lH-SMv"/>
+                        <segue destination="6J7-OH-jvd" kind="show" identifier="toDetail" id="vBr-l3-21m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-157" y="84"/>
+            <point key="canvasLocation" x="-107" y="84"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="lW8-cp-qk7">
+            <objects>
+                <viewController id="6J7-OH-jvd" customClass="DetailViewController" customModule="currency_converter_helper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="P0H-s0-QEn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="I6W-Py-G1x"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Detail" id="CYC-1x-1QU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jdQ-Br-D4C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="803" y="84"/>
         </scene>
     </scenes>
     <resources>
