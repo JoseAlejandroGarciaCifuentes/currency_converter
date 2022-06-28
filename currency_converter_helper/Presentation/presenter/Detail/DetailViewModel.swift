@@ -55,7 +55,7 @@ extension DetailViewModel: CurrencyConverterDelegate {
         
         var amounts: [Double] = []
         transactions.forEach { transaction in
-            let amount = currencyConverter.convertAmount(currency: Currencies(rawValue: transaction.currency) ?? .EUR, amount: transaction.amount.toDouble() ?? Double())
+            let amount = currencyConverter.getAmountInEur(currency: Currencies(rawValue: transaction.currency) ?? .EUR, amount: transaction.amount.toDouble() ?? Double())
             amounts.append(amount)
             transactionsWithEur.append(TransactionWithEur(transaction: transaction, amountInEur: String(describing: amount).roundToHalfEven()))
         }
@@ -70,8 +70,8 @@ extension DetailViewModel: CurrencyConverterDelegate {
         detailViewState.onNext(currentViewState)
     }
     
-    func onError() {
-        currentViewState = .error
+    func onError(_ error: String) {
+        currentViewState = .onError(error: error)
         detailViewState.onNext(currentViewState)
     }
     

@@ -19,13 +19,13 @@ protocol CurrencyConverterProtocol {
     var delegate: CurrencyConverterDelegate? { get set }
     
     func getRates()
-    func convertAmount(currency: Currencies, amount: Double) -> Double
+    func getAmountInEur(currency: Currencies, amount: Double) -> Double
 }
 
 protocol CurrencyConverterDelegate {
     func onSuccess()
     func onLoading()
-    func onError()
+    func onError(_ error: String)
 }
 
 class CurrencyConverter: CurrencyConverterProtocol {
@@ -41,8 +41,56 @@ class CurrencyConverter: CurrencyConverterProtocol {
         self.rates = []
     }
     
-    private func fromTo(from: Currencies, to: Currencies, amount: Double) -> Double {
-        // TODO - CONVERT WITH RATES
+    /**
+     Checks the available conversions and converts the currency until its in EUR
+     Returns: Amount Converted in Eur
+     */
+    func getAmountInEur(currency: Currencies, amount: Double) -> Double {
+        if currency == .EUR { return amount }
+        
+        let ratesWithCurrency = getAllRates(with: currency) //Fetches all rates that contains the currency in the <<from>> var
+        
+        if ratesWithCurrency.contains(where: { $0.to == Currencies.EUR.rawValue}) { //Weather the rate has an EUR conversion
+            return convertAmount(from: currency, to: .EUR, amount: amount)
+        } else { // or not
+            
+            let toRates = ratesWithCurrency.map({ $0.to }).uniqued()
+            
+            //test "to" variables if any converts to EUR
+            if let rateConvertsToEUR = getRateThatConvertsToEur(fromRates: toRates) {
+                guard let newCurrency = Currencies(rawValue: rateConvertsToEUR.from) else { return Double() }
+                let amountConverted = convertAmount(from: newCurrency, to: .EUR, amount: amount)
+                return getAmountInEur(currency: newCurrency, amount: amountConverted)
+            } else {
+                
+                guard let newCurrency = Currencies(rawValue: toRates.first ?? Currencies.USD.rawValue) else { return Double() }
+                let amountConverted = convertAmount(from: newCurrency, to: .EUR, amount: amount)
+                return getAmountInEur(currency: Currencies(rawValue: toRates.first ?? Currencies.USD.rawValue) ?? .USD, amount: amountConverted)
+            
+            }
+        }
+    }
+    /**
+     Retrieves all rates that contains the currency in the "from" property
+     */
+    func getAllRates(with currency: Currencies) -> [Rate] {
+        return rates.filter({ $0.from == currency.rawValue })
+    }
+    
+    /**
+     Returns the rate that contains eur as in the "to" property
+     */
+    func getRateThatConvertsToEur(fromRates: [String]) -> Rate? {
+        return rates.first { rate in
+            fromRates.contains(where: { $0 == rate.from && rate.to == Currencies.EUR.rawValue })
+        }
+    }
+    
+    /**
+     Converts the amount from one currency to another given
+     Returns: new amount converted as Double
+     */
+    private func convertAmount(from: Currencies, to: Currencies, amount: Double) -> Double {
         var newAmount = amount
         
         if let rateExchange = rates.first(where: { $0.from == from.rawValue && $0.to == to.rawValue })?.rate.toDouble() {
@@ -50,44 +98,6 @@ class CurrencyConverter: CurrencyConverterProtocol {
         }
         
         return newAmount
-    }
-    
-    func convertAmount(currency: Currencies, amount: Double) -> Double {
-        if currency == .EUR { return amount }
-        
-        let ratesWithCurrency = getAllRates(with: currency) //Fetches all rates that contains the currency in the <<from>> var
-        
-        if ratesWithCurrency.contains(where: { $0.to == Currencies.EUR.rawValue}) { //Weather the rate has an EUR conversion
-            return fromTo(from: currency, to: .EUR, amount: amount)
-        } else { // or not
-            
-            let toRates = ratesWithCurrency.map({ $0.to }).uniqued()
-            
-            //test "to" variables if any converts to EUR returns the ONE
-            if let rateConvertsToEUR = getRateThatConvertsToEur(fromRates: toRates) {
-                guard let newCurrency = Currencies(rawValue: rateConvertsToEUR.from) else { return Double() }
-                let amountConverted = fromTo(from: newCurrency, to: .EUR, amount: amount)
-                return convertAmount(currency: newCurrency, amount: amountConverted)
-            } else {
-                
-                guard let newCurrency = Currencies(rawValue: toRates.first ?? Currencies.USD.rawValue) else { return Double() }
-                let amountConverted = fromTo(from: newCurrency, to: .EUR, amount: amount)
-                return convertAmount(currency: Currencies(rawValue: toRates.first ?? Currencies.USD.rawValue) ?? .USD, amount: amountConverted)
-            
-            }
-        }
-    }
-    
-    func getAllRates(with currency: Currencies) -> [Rate] {
-        return rates.filter({ $0.from == currency.rawValue })
-    }
-    
-    func getRateThatConvertsToEur(fromRates: [String]) -> Rate? {
-        
-        return rates.first { rate in
-            fromRates.contains(where: { $0 == rate.from && rate.to == Currencies.EUR.rawValue })
-        }
-        
     }
     
     /**
@@ -101,8 +111,7 @@ class CurrencyConverter: CurrencyConverterProtocol {
                 switch completion {
                     case .finished: break
                 case .failure(let error):
-                    print(error.errorDescription)
-                    self?.delegate?.onError()
+                    self?.delegate?.onError(error.errorDescription ?? "")
                 }
             } receiveValue: { [weak self] response in
                 guard self != nil else { return }

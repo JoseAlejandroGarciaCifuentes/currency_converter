@@ -11,7 +11,7 @@ enum DetailViewState {
     case loading
     case displayInfo(transactions: [TransactionWithEur], totalSum: String)
     case success
-    case error
+    case onError(error: String)
 }
 
 extension DetailViewState : Equatable {
@@ -20,7 +20,7 @@ extension DetailViewState : Equatable {
         case (.loading, .loading): return true
         case (.displayInfo(let transactions1, let totalSum1), .displayInfo(let transactions2, let totalSum2)): return (transactions1 == transactions2 && totalSum1 == totalSum2) ? true : false
         case (.success, .success): return true
-        case (.error, .error): return true
+        case (.onError(let error1), .onError(let error2)): return (error1 == error2) ? true : false
         default:
             return false
         }

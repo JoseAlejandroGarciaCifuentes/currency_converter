@@ -46,8 +46,9 @@ class DetailViewController: BaseVC<DetailViewModel>, ActivityIndicatorPresenter 
                         displayInfo(transactions: transactions, totalSum: totalSum)
                     case .success:
                         hideActivityIndicator()
-                    case .error:
+                    case .onError(let error):
                         hideActivityIndicator()
+                        showAlert(error: error)
                     }
                     
                 })
@@ -59,8 +60,11 @@ class DetailViewController: BaseVC<DetailViewModel>, ActivityIndicatorPresenter 
         tableView.dataSource = self
     }
     
+    /**
+     Sets data on view
+     */
     func displayInfo(transactions: [TransactionWithEur], totalSum: String) {
-        totalAmountLabel.text = totalSum
+        totalAmountLabel.text = LocalizedKeys.Details.total + " " + totalSum
         transactionsAmount.text = LocalizedKeys.Details.showing + " " + String(describing: transactions.count) + " " + LocalizedKeys.Details.results
         
         hideActivityIndicator()

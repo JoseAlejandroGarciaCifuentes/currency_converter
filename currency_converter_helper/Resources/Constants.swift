@@ -13,9 +13,20 @@ struct Constants {
         static let eur = "€"
         static let dollar = "$"
     }
-    struct Domain {
+    struct Api {
         static let apiBaseUrl = "http://quiet-stone-2094.herokuapp.com/"
         static let urlExtension = ".json"
+    }
+    
+    struct Endpoints {
+        static let rates = "rates"
+        static let transactions = "transactions"
+    }
+    
+    struct Headers {
+        static let contentType = "Content-Type"
+        static let applicationJson = "application/json"
+        static let accept = "Accept"
     }
     
     struct DI {

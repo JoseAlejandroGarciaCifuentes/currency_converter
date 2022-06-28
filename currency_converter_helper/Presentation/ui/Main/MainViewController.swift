@@ -19,8 +19,8 @@ class MainViewController: BaseVC<MainViewModel>, ActivityIndicatorPresenter {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = LocalizedKeys.Main.title
         setupTableView()
+        setupNavigationController()
         setupViewStateObserver()
         viewModel.viewIsReady()
     }
@@ -42,14 +42,12 @@ class MainViewController: BaseVC<MainViewModel>, ActivityIndicatorPresenter {
                     switch (viewState) {
                     case .loading:
                         showActivityIndicator()
-                        print("loading")
                     case .displayTransactions(transactions: let transactions):
                         displayTransactions(transactions: transactions)
-                        print("displaying transactions")
                     case .openDetails(let transactions):
-                        print("open")
-                        //self.performSegue(withIdentifier: "toDetail", sender: nil)
                         self.navigationController?.pushViewController(Application.shared.getDetailViewController(transactions: transactions), animated: true)
+                    case .onError(error: let error):
+                        showAlert(error: error)
                     }
                     
                 })
@@ -62,10 +60,23 @@ class MainViewController: BaseVC<MainViewModel>, ActivityIndicatorPresenter {
         tableVIew.dataSource = self
     }
     
+    private func setupNavigationController() {
+        self.title = LocalizedKeys.Main.title
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reloadView))
+    }
+    
+    /**
+     Sets transactions on view
+     */
     func displayTransactions(transactions: [String]) {
         self.transactionsToShow = transactions
         hideActivityIndicator()
         tableVIew.reloadData()
+    }
+    
+    @objc
+    func reloadView() {
+        viewModel.viewIsReady()
     }
     
 }
@@ -75,7 +86,7 @@ class MainViewController: BaseVC<MainViewModel>, ActivityIndicatorPresenter {
 extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.transactionsToShow.count
+        transactionsToShow.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

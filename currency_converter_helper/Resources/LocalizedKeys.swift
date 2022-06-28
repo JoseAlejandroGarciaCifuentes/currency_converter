@@ -9,6 +9,11 @@ import Foundation
 
 struct LocalizedKeys {
     
+    struct General {
+        static let error = "Error"
+        static let ok = "OK"
+    }
+    
     struct Main {
         static let title = "Home".localized
         static let uniqueTransactions = "unique transactions".localized
@@ -19,5 +24,6 @@ struct LocalizedKeys {
         static let showing = "Showing".localized
         static let results = "results".localized
         static let sku = "SKU"
+        static let total = "Total:"
     }
 }

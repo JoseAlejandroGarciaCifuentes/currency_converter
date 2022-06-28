@@ -38,7 +38,7 @@ final class Application {
     }
     
     /**
-     Connect the layers of the app (VIPER) for the menu navigation
+     Connect the layers of the app for the menu navigation
      - Returns: The menu navigation controller
      */
     func getMainNavigationController() -> UINavigationController {
@@ -46,6 +46,10 @@ final class Application {
         return startStoryboard.instantiateInitialViewController() as! UINavigationController
     }
     
+    /**
+     Connect the layers of the app for the DetailViewController
+     - Returns: DetailViewController
+     */
     func getDetailViewController(transactions: [Transaction]) -> DetailViewController {
         let mainStoryboard = SwinjectStoryboard.create(name: Constants.Storyboard.main, bundle: nil, container: assembler.resolver)
         let detailVC = mainStoryboard.instantiateViewController(withIdentifier: Constants.ViewController.detailVC) as! DetailViewController

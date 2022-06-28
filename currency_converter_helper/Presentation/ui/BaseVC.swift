@@ -32,4 +32,12 @@ class BaseVC<T: BaseVM>: UIViewController {
     deinit {
         compositeDisposable.dispose()
     }
+    
+    internal func showAlert(error: String) {
+        let alert = UIAlertController(title: LocalizedKeys.General.error, message: error, preferredStyle: .alert)
+        alert.addAction(
+            UIAlertAction(title: LocalizedKeys.General.ok, style: .default, handler: nil)
+        )
+        self.present(alert, animated: true, completion: nil)
+    }
 }

@@ -27,7 +27,7 @@ class MainViewModel: BaseVM {
     private(set) var currentViewState: MainViewState = .loading
     
     var transactions: [Transaction] = []
-    var transactionsToShow: [String] = []
+    private var transactionsToShow: [String] = []
     
     init(provider: Provider) {
         self.provider = provider
@@ -50,6 +50,9 @@ class MainViewModel: BaseVM {
         mainViewState.onNext(currentViewState)
     }
     
+    /**
+     Fetches all transactions from api
+     */
     internal func getTransactions() {
         currentViewState = .loading
         mainViewState.onNext(currentViewState)
@@ -60,10 +63,12 @@ class MainViewModel: BaseVM {
                 switch completion {
                     case .finished: break
                 case .failure(let error):
-                    print(error.errorDescription)
+                    self?.currentViewState = MainViewState.onError(error: error.errorDescription ?? "")
+                    self?.mainViewState.onNext(self?.currentViewState ?? .loading)
                 }
             } receiveValue: { [weak self] response in
                 guard self != nil else { return }
+                self?.transactions.removeAll()
                 response.forEach { transaction in
                     self?.transactions.append(Transaction(transaction))
                 }

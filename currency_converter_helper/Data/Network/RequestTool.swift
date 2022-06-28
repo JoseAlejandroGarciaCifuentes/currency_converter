@@ -26,10 +26,10 @@ protocol Request {
 
 extension Request {
     
-    var baseURL: String { Constants.Domain.apiBaseUrl }
-    var urlExtension: String { Constants.Domain.urlExtension }
+    var baseURL: String { Constants.Api.apiBaseUrl }
+    var urlExtension: String { Constants.Api.urlExtension }
     var httpMethod: HTTMethods { .get }
     var params: [String: Any] { [:] }
-    var httpHeaders: HTTPHeaders { return ["Content-Type": "application/json", "Accept" : "application/json"] }
+    var httpHeaders: HTTPHeaders { return [Constants.Headers.contentType: Constants.Headers.applicationJson, Constants.Headers.accept : Constants.Headers.applicationJson] }
     
 }
