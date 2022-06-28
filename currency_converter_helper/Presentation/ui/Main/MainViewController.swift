@@ -10,14 +10,16 @@ import RxSwift
 
 class MainViewController: BaseVC<MainViewModel>, ActivityIndicatorPresenter {
     
-    var activityIndicator = UIActivityIndicatorView()
     @IBOutlet weak var tableVIew: UITableView!
     
+    var activityIndicator = UIActivityIndicatorView()
+    
     /// Array containing the table content
-    private var transactions: [Transaction] = []
+    private var transactionsToShow: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = LocalizedKeys.Main.title
         setupTableView()
         setupViewStateObserver()
         viewModel.viewIsReady()
@@ -42,12 +44,12 @@ class MainViewController: BaseVC<MainViewModel>, ActivityIndicatorPresenter {
                         showActivityIndicator()
                         print("loading")
                     case .displayTransactions(transactions: let transactions):
-                        let newTrans = transactions.unique { $0.sku == $1.sku }
-                        displayTransactions(newTrans)
+                        displayTransactions(transactions: transactions)
                         print("displaying transactions")
-                    case .openDetails:
+                    case .openDetails(let transactions):
                         print("open")
-                        self.performSegue(withIdentifier: "toDetail", sender: nil)
+                        //self.performSegue(withIdentifier: "toDetail", sender: nil)
+                        self.navigationController?.pushViewController(Application.shared.getDetailViewController(transactions: transactions), animated: true)
                     }
                     
                 })
@@ -60,8 +62,8 @@ class MainViewController: BaseVC<MainViewModel>, ActivityIndicatorPresenter {
         tableVIew.dataSource = self
     }
     
-    func displayTransactions(_ transactions: [Transaction]) {
-        self.transactions = transactions
+    func displayTransactions(transactions: [String]) {
+        self.transactionsToShow = transactions
         hideActivityIndicator()
         tableVIew.reloadData()
     }
@@ -71,22 +73,21 @@ class MainViewController: BaseVC<MainViewModel>, ActivityIndicatorPresenter {
 // MARK: - Table View Delegate
 
 extension MainViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        viewModel.transactionsToShow.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        transactions.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Get the empty cell.
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIds.transactionCell, for: indexPath)
-        viewModel.configure(cell: cell as! TransactionCell, forRowAt: indexPath.section)
+        viewModel.configure(cell: cell as! TransactionCell, forRowAt: indexPath.row)
         return cell
     }
-    
-    
     
 }
 
@@ -99,7 +100,9 @@ extension MainViewController: UITableViewDelegate {
      */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO: Display transaction in modal view
-        viewModel.moveToDetails(with: transactions[indexPath.row])
+        let transactionsSelected = viewModel.transactions.filter({ $0.sku == transactionsToShow[indexPath.row] })
+        viewModel.moveToDetails(with: transactionsSelected)
     }
+    
 }
 

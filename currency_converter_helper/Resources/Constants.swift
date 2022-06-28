@@ -8,6 +8,11 @@
 import Foundation
 
 struct Constants {
+    
+    struct Symbols {
+        static let eur = "€"
+        static let dollar = "$"
+    }
     struct Domain {
         static let apiBaseUrl = "http://quiet-stone-2094.herokuapp.com/"
         static let urlExtension = ".json"
@@ -23,9 +28,11 @@ struct Constants {
     
     struct ViewController {
         static let mainVC = "MainVC"
+        static let detailVC = "DetailVC"
     }
     
     struct cellIds {
         static let transactionCell = "transactionCell"
+        static let detailCell = "detailCell"
     }
 }

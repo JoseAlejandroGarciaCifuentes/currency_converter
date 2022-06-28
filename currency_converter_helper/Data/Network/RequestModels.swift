@@ -8,11 +8,11 @@
 import Foundation
 
 struct RatesRequest: Request {
-    var endpoint: String { baseURL + "rates" + urlExtension }
+    var endpoint: String { baseURL + "rates" }
     var httpHeaders: HTTPHeaders { ["Content-Type": "application/json", "Accept" : "application/json"] }
 }
 
 struct TransactionsRequest: Request {
-    var endpoint: String { baseURL + "transactions" + urlExtension }
+    var endpoint: String { baseURL + "transactions" }
     var httpHeaders: HTTPHeaders { ["Content-Type": "application/json", "Accept" : "application/json"] }
 }

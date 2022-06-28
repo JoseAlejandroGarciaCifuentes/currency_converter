@@ -13,6 +13,7 @@ class TransactionCell: BaseCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -23,8 +24,8 @@ class TransactionCell: BaseCell {
      Displays configured cell
      - Parameter transaction: Transaction instance to be displayed
     */
-    func display(transaction: Transaction) {
-        self.title.text = transaction.sku
+    func display(transactionName: String) {
+        self.title.text = transactionName
     }
 
 }

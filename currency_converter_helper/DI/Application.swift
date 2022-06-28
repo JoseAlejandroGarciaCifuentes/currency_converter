@@ -45,5 +45,12 @@ final class Application {
         let startStoryboard = SwinjectStoryboard.create(name: Constants.Storyboard.main, bundle: nil, container: assembler.resolver)
         return startStoryboard.instantiateInitialViewController() as! UINavigationController
     }
+    
+    func getDetailViewController(transactions: [Transaction]) -> DetailViewController {
+        let mainStoryboard = SwinjectStoryboard.create(name: Constants.Storyboard.main, bundle: nil, container: assembler.resolver)
+        let detailVC = mainStoryboard.instantiateViewController(withIdentifier: Constants.ViewController.detailVC) as! DetailViewController
+        detailVC.viewModel.transactions = transactions
+        return detailVC
+    }
 
 }
