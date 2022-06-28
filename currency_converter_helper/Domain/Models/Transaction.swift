@@ -24,3 +24,18 @@ extension Transaction: Equatable {
     return lhs.sku == rhs.sku
   }
 }
+
+
+struct TransactionWithEur: Hashable {
+    var sku: String
+    var amount: String
+    var amountInEur: String
+    var currency: String
+    
+    init(transaction: Transaction, amountInEur: String) {
+        self.sku = transaction.sku
+        self.amount = transaction.amount
+        self.currency = transaction.currency
+        self.amountInEur = amountInEur
+    }
+}

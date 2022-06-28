@@ -26,8 +26,8 @@ class MainViewModel: BaseVM {
     /// The current ViewState of the UIViewController attached - MapVC
     private(set) var currentViewState: MainViewState = .loading
     
-    /// Array containing the table content
-    private var transactions: [Transaction] = []
+    var transactions: [Transaction] = []
+    private var transactionsToShow: [String] = []
     
     init(provider: Provider) {
         self.provider = provider
@@ -41,15 +41,18 @@ class MainViewModel: BaseVM {
      Configure notication cells for MainViewController
      */
     func configure(cell: TransactionCell, forRowAt row: Int) {
-        let transaction = transactions[row]
-        cell.display(transaction: transaction)
+        let transaction = transactionsToShow[row]
+        cell.display(transactionName: transaction)
     }
     
-    func moveToDetails(with transaction: Transaction) {
-        currentViewState = .openDetails
+    func moveToDetails(with transactions: [Transaction]) {
+        currentViewState = .openDetails(transactions: transactions)
         mainViewState.onNext(currentViewState)
     }
     
+    /**
+     Fetches all transactions from api
+     */
     internal func getTransactions() {
         currentViewState = .loading
         mainViewState.onNext(currentViewState)
@@ -60,15 +63,17 @@ class MainViewModel: BaseVM {
                 switch completion {
                     case .finished: break
                 case .failure(let error):
-                    print(error.errorDescription)
+                    self?.currentViewState = MainViewState.onError(error: error.errorDescription ?? "")
+                    self?.mainViewState.onNext(self?.currentViewState ?? .loading)
                 }
             } receiveValue: { [weak self] response in
                 guard self != nil else { return }
+                self?.transactions.removeAll()
                 response.forEach { transaction in
                     self?.transactions.append(Transaction(transaction))
                 }
-                
-                self?.currentViewState = MainViewState.displayTransactions(transactions: self?.transactions ?? [])
+                self?.transactionsToShow = self?.transactions.map { $0.sku }.uniqued() ?? []
+                self?.currentViewState = MainViewState.displayTransactions(transactions: self?.transactionsToShow ?? [])
                 self?.mainViewState.onNext(self?.currentViewState ?? .loading)
             }
             .store(in: &cancellable)

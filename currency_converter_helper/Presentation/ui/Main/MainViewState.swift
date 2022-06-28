@@ -9,8 +9,9 @@ import Foundation
 
 enum MainViewState {
     case loading
-    case displayTransactions(transactions: [Transaction])
-    case openDetails
+    case displayTransactions(transactions: [String])
+    case openDetails(transactions: [Transaction])
+    case onError(error: String)
 }
 
 extension MainViewState : Equatable {
@@ -18,7 +19,8 @@ extension MainViewState : Equatable {
         switch (lhs, rhs) {
         case (.loading, .loading): return true
         case (.displayTransactions(let transaction1), .displayTransactions(let transaction2)): return (transaction1 == transaction2) ? true : false
-        case (.openDetails, .openDetails): return true
+        case (.openDetails(let transactions1), .openDetails(let transactions2)): return (transactions1 == transactions2) ? true : false
+        case (.onError(let error1), .onError(let error2)): return (error1 == error2) ? true : false
         default:
             return false
         }

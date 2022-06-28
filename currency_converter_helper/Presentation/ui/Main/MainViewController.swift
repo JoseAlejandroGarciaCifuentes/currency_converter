@@ -10,15 +10,17 @@ import RxSwift
 
 class MainViewController: BaseVC<MainViewModel>, ActivityIndicatorPresenter {
     
-    var activityIndicator = UIActivityIndicatorView()
     @IBOutlet weak var tableVIew: UITableView!
     
+    var activityIndicator = UIActivityIndicatorView()
+    
     /// Array containing the table content
-    private var transactions: [Transaction] = []
+    private var transactionsToShow: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupNavigationController()
         setupViewStateObserver()
         viewModel.viewIsReady()
     }
@@ -40,14 +42,12 @@ class MainViewController: BaseVC<MainViewModel>, ActivityIndicatorPresenter {
                     switch (viewState) {
                     case .loading:
                         showActivityIndicator()
-                        print("loading")
                     case .displayTransactions(transactions: let transactions):
-                        let newTrans = transactions.unique { $0.sku == $1.sku }
-                        displayTransactions(newTrans)
-                        print("displaying transactions")
-                    case .openDetails:
-                        print("open")
-                        self.performSegue(withIdentifier: "toDetail", sender: nil)
+                        displayTransactions(transactions: transactions)
+                    case .openDetails(let transactions):
+                        self.navigationController?.pushViewController(Application.shared.getDetailViewController(transactions: transactions), animated: true)
+                    case .onError(error: let error):
+                        showAlert(error: error)
                     }
                     
                 })
@@ -60,10 +60,23 @@ class MainViewController: BaseVC<MainViewModel>, ActivityIndicatorPresenter {
         tableVIew.dataSource = self
     }
     
-    func displayTransactions(_ transactions: [Transaction]) {
-        self.transactions = transactions
+    private func setupNavigationController() {
+        self.title = LocalizedKeys.Main.title
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(reloadView))
+    }
+    
+    /**
+     Sets transactions on view
+     */
+    func displayTransactions(transactions: [String]) {
+        self.transactionsToShow = transactions
         hideActivityIndicator()
         tableVIew.reloadData()
+    }
+    
+    @objc
+    func reloadView() {
+        viewModel.viewIsReady()
     }
     
 }
@@ -71,22 +84,21 @@ class MainViewController: BaseVC<MainViewModel>, ActivityIndicatorPresenter {
 // MARK: - Table View Delegate
 
 extension MainViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        transactionsToShow.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        transactions.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Get the empty cell.
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIds.transactionCell, for: indexPath)
-        viewModel.configure(cell: cell as! TransactionCell, forRowAt: indexPath.section)
+        viewModel.configure(cell: cell as! TransactionCell, forRowAt: indexPath.row)
         return cell
     }
-    
-    
     
 }
 
@@ -99,7 +111,9 @@ extension MainViewController: UITableViewDelegate {
      */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO: Display transaction in modal view
-        viewModel.moveToDetails(with: transactions[indexPath.row])
+        let transactionsSelected = viewModel.transactions.filter({ $0.sku == transactionsToShow[indexPath.row] })
+        viewModel.moveToDetails(with: transactionsSelected)
     }
+    
 }
 

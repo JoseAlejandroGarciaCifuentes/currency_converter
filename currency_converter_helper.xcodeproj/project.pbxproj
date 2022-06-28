@@ -30,12 +30,17 @@
 		531E12222862316400A55B9F /* BeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531E12212862316400A55B9F /* BeamModel.swift */; };
 		53CECD7E2862564200DF8A09 /* RatesServerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CECD7D2862564200DF8A09 /* RatesServerModel.swift */; };
 		53CECD8028625B4300DF8A09 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CECD7F28625B4300DF8A09 /* Provider.swift */; };
+		53EFAC13286A3211001788BF /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EFAC12286A3211001788BF /* DetailCell.swift */; };
+		53F1DE7D2864A15C003C7F94 /* CurrencyConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F1DE7C2864A15C003C7F94 /* CurrencyConverter.swift */; };
 		53F93A3E28644CFE0056D5AF /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F93A3D28644CFE0056D5AF /* ActivityIndicator.swift */; };
 		53F93A4128645A5A0056D5AF /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F93A4028645A5A0056D5AF /* TransactionCell.swift */; };
 		53F93A4328645B440056D5AF /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F93A4228645B440056D5AF /* ArrayExtension.swift */; };
 		53F93A4628645ECB0056D5AF /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F93A4528645ECB0056D5AF /* Transaction.swift */; };
 		53F93A48286461020056D5AF /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F93A47286461020056D5AF /* BaseCell.swift */; };
 		53F93A4B28646C650056D5AF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F93A4A28646C650056D5AF /* DetailViewController.swift */; };
+		53F93A4D28647CCF0056D5AF /* Rates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F93A4C28647CCF0056D5AF /* Rates.swift */; };
+		53F93A5028647D450056D5AF /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F93A4F28647D450056D5AF /* DetailViewModel.swift */; };
+		53F93A5228647DA60056D5AF /* DetailViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F93A5128647DA60056D5AF /* DetailViewState.swift */; };
 		53FB126D286260B600475FB9 /* TransactionServerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FB126C286260B600475FB9 /* TransactionServerModel.swift */; };
 		53FB126F2863022E00475FB9 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FB126E2863022E00475FB9 /* MainViewModel.swift */; };
 		53FB12732863054700475FB9 /* MainViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FB12722863054700475FB9 /* MainViewState.swift */; };
@@ -91,12 +96,17 @@
 		531E12212862316400A55B9F /* BeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeamModel.swift; sourceTree = "<group>"; };
 		53CECD7D2862564200DF8A09 /* RatesServerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesServerModel.swift; sourceTree = "<group>"; };
 		53CECD7F28625B4300DF8A09 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		53EFAC12286A3211001788BF /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
+		53F1DE7C2864A15C003C7F94 /* CurrencyConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverter.swift; sourceTree = "<group>"; };
 		53F93A3D28644CFE0056D5AF /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		53F93A4028645A5A0056D5AF /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		53F93A4228645B440056D5AF /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		53F93A4528645ECB0056D5AF /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		53F93A47286461020056D5AF /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		53F93A4A28646C650056D5AF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		53F93A4C28647CCF0056D5AF /* Rates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rates.swift; sourceTree = "<group>"; };
+		53F93A4F28647D450056D5AF /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		53F93A5128647DA60056D5AF /* DetailViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewState.swift; sourceTree = "<group>"; };
 		53FB126C286260B600475FB9 /* TransactionServerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionServerModel.swift; sourceTree = "<group>"; };
 		53FB126E2863022E00475FB9 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		53FB12722863054700475FB9 /* MainViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewState.swift; sourceTree = "<group>"; };
@@ -216,11 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				53F93A4428645E650056D5AF /* Models */,
-				531E121928622E4D00A55B9F /* RequestManager.swift */,
-				531E121B28622E5D00A55B9F /* RequestTool.swift */,
-				531E121D28622E6E00A55B9F /* RequestModels.swift */,
-				531E121F28622E8200A55B9F /* NetworkingError.swift */,
-				53CECD7F28625B4300DF8A09 /* Provider.swift */,
+				53F1DE7C2864A15C003C7F94 /* CurrencyConverter.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -228,6 +234,7 @@
 		531E11FC2862129F00A55B9F /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				53F93A54286482190056D5AF /* Network */,
 				531E121728622C2A00A55B9F /* Models */,
 			);
 			path = Data;
@@ -270,6 +277,7 @@
 		531E1202286216BF00A55B9F /* presenter */ = {
 			isa = PBXGroup;
 			children = (
+				53F93A4E28647D320056D5AF /* Detail */,
 				53FB12702863024800475FB9 /* Main */,
 				53FB12762863086700475FB9 /* BaseVM.swift */,
 			);
@@ -324,6 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				53F93A4528645ECB0056D5AF /* Transaction.swift */,
+				53F93A4C28647CCF0056D5AF /* Rates.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -332,8 +341,30 @@
 			isa = PBXGroup;
 			children = (
 				53F93A4A28646C650056D5AF /* DetailViewController.swift */,
+				53F93A5128647DA60056D5AF /* DetailViewState.swift */,
+				53EFAC12286A3211001788BF /* DetailCell.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		53F93A4E28647D320056D5AF /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				53F93A4F28647D450056D5AF /* DetailViewModel.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		53F93A54286482190056D5AF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				531E121928622E4D00A55B9F /* RequestManager.swift */,
+				531E121B28622E5D00A55B9F /* RequestTool.swift */,
+				531E121D28622E6E00A55B9F /* RequestModels.swift */,
+				531E121F28622E8200A55B9F /* NetworkingError.swift */,
+				53CECD7F28625B4300DF8A09 /* Provider.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		53FB12702863024800475FB9 /* Main */ = {
@@ -618,6 +649,7 @@
 				53FB12752863082F00475FB9 /* BaseVC.swift in Sources */,
 				531E12222862316400A55B9F /* BeamModel.swift in Sources */,
 				531E11CF28620F9700A55B9F /* MainViewController.swift in Sources */,
+				53F93A5228647DA60056D5AF /* DetailViewState.swift in Sources */,
 				531E121E28622E6E00A55B9F /* RequestModels.swift in Sources */,
 				53FB126D286260B600475FB9 /* TransactionServerModel.swift in Sources */,
 				53F93A4328645B440056D5AF /* ArrayExtension.swift in Sources */,
@@ -629,11 +661,15 @@
 				531E1204286220B000A55B9F /* LocalizedKeys.swift in Sources */,
 				531E11CB28620F9700A55B9F /* AppDelegate.swift in Sources */,
 				531E121A28622E4D00A55B9F /* RequestManager.swift in Sources */,
+				53F1DE7D2864A15C003C7F94 /* CurrencyConverter.swift in Sources */,
 				53CECD7E2862564200DF8A09 /* RatesServerModel.swift in Sources */,
 				531E121628622BB200A55B9F /* TargetAssembly.swift in Sources */,
+				53F93A4D28647CCF0056D5AF /* Rates.swift in Sources */,
+				53F93A5028647D450056D5AF /* DetailViewModel.swift in Sources */,
 				53FB12792863229A00475FB9 /* RootViewController.swift in Sources */,
 				531E122028622E8200A55B9F /* NetworkingError.swift in Sources */,
 				53F93A48286461020056D5AF /* BaseCell.swift in Sources */,
+				53EFAC13286A3211001788BF /* DetailCell.swift in Sources */,
 				53CECD8028625B4300DF8A09 /* Provider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -736,6 +772,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -798,6 +835,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
