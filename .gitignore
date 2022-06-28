@@ -40,6 +40,11 @@ Thumbs.db
 *.exe
 *.war
 
+# CocoaPods - Only use to conserve bandwidth / Save time on Pushing
+#           - Also handy if you have a large number of dependant pods
+#           - AS PER https://guides.cocoapods.org/using/using-cocoapods.html NEVER IGNORE THE LOCK FILE
+Pods/
+
 # Large media files
 *.mp4
 *.tiff
